@@ -14,9 +14,9 @@
 你可以使用 npm 或 yarn 来安装：
 
 ```bash
-npm install enumx
+npm install @sailei1996/enumx
 # 或者
-yarn add enumx
+yarn add @sailei1996/enumx
 ```
 
 ## 使用方法
