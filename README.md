@@ -48,7 +48,7 @@ console.log(isInfo); // 输出: true
 #### 通过 `value` 获取 `label`，适用于字段反显，比如中英文映射：
 
 ```typescript
-console.log(colorEnum.getTextFromValue('error')); // 输出: 错误
+console.log(InfoLevelEnum.getTextFromValue('error')); // 输出: 错误
 ```
 
 #### 通过 `toArray` 获取数组数据，适用于获取映射数据源，比如下拉选择控件：
