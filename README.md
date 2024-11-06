@@ -4,10 +4,11 @@
 
 ## 特性
 
-- **类型安全**：借助 TypeScript 类型推导，`EnumX` 可以在编译时确保访问的属性和方法的类型安全。
+- **完善的代码提示**：借助 TypeScript 类型推导，`EnumX` 提供了丰富的代码提示，使得使用更加方便。
 - **丰富的枚举项操作方法**：支持通过 `value`、`label`、`alias` 等方式获取对应的枚举项或其属性。
 - **简洁的访问**：通过代理机制，可以直接使用枚举的 `alias` 来访问其 `value`。
 - **易于集成**：可以直接将 `EnumX` 实例转换为数组，方便用于下拉选择控件等数据源场景。
+- **灵活的扩展**：支持自定义枚举项属性，并可以轻松地将其转换为数组。
 
 ## 安装
 
@@ -26,27 +27,63 @@ yarn add @sailei1996/enumx
 通过 `EnumX.createEnum` 方法创建 `EnumX` 实例：
 
 ```typescript
-import EnumX from 'enumx';
+import EnumX from "enumx";
 
 const InfoLevelEnum = EnumX.createEnum([
-  {
-    label: "通知",
-    alias: "INFO",
-    value: "info",
-    color: "var(--global-primary-color)",
-  },
-  {
-    label: "警告",
-    alias: "WARNING",
-    value: "warning",
-    color: "var(--global-warning-color)",
-  },
-  {
-    label: "错误",
-    alias: "ERROR",
-    value: "error",
-    color: "var(--global-error-color)",
-  },
+  { label: "通知", alias: "INFO", value: "info", color: "var(--primary-color)" },
+  { label: "警告", alias: "WARNING", value: "warning", color: "var(--warning-color)" },
+  { label: "错误", alias: "ERROR", value: "error", color: "var(--error-color)" },
 ] as const);
 ```
 
+### 常见用法示例
+
+#### 通过 `InfoLevelEnum.alias` 获取对应value，保留enum基本用法：
+
+```typescript
+const isInfo = InfoLevelEnum.INFO === "info";
+console.log(isInfo); // 输出: true
+```
+
+#### 通过 `value` 获取 `label`，适用于字段反显，比如中英文映射：
+
+```typescript
+console.log(colorEnum.getTextFromValue('error')); // 输出: 错误
+```
+
+#### 通过 `toArray` 获取数组数据，适用于获取映射数据源，比如下拉选择控件：
+
+```typescript
+const InfoLevelList = InfoLevelEnum.toArray();
+console.log(InfoLevelList); // 输出原数组
+
+const InfoLevelPartialList = InfoLevelEnum.toArray('INFO', 'ERROR');
+console.log(InfoLevelPartialList); // 输出INFO和ERROR组成的数组
+```
+
+#### 通过 `fromValue` 获取整条数据：
+
+```typescript
+const infoColor = InfoLevelEnum.fromValue("info")?.color;
+console.log(infoColor); // 输出: "var(--primary-color)"
+```
+
+### 所有用法示例
+```typescript
+InfoLevelEnum.INFO // info
+
+InfoLevelEnum.getValueFromAlias('INFO') // info
+InfoLevelEnum.getValueFromText('通知') // info
+
+InfoLevelEnum.getAliasFromValue('info') // INFO
+InfoLevelEnum.getAliasFromText('通知') // INFO
+
+InfoLevelEnum.getTextFromValue('info') // 通知
+InfoLevelEnum.getTextFromAlias('INFO') // 通知
+
+InfoLevelEnum.fromValue('info') // { label: "通知", alias: "INFO", value: "info", color: "var(--primary-color)" }
+InfoLevelEnum.fromAlias('INFO') // { label: "通知", alias: "INFO", value: "info", color: "var(--primary-color)" }
+InfoLevelEnum.fromText('通知') // { label: "通知", alias: "INFO", value: "info", color: "var(--primary-color)" }
+
+InfoLevelEnum.toArray()
+```

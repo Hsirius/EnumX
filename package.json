@@ -9,7 +9,7 @@
     "enum",
     "typescript"
   ],
-  "version": "1.0.4",
+  "version": "1.0.6",
   "devDependencies": {
     "@babel/cli": "^7.25.9",
     "@babel/core": "^7.26.0",
