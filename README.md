@@ -68,6 +68,13 @@ const infoColor = InfoLevelEnum.fromValue("info")?.color;
 console.log(infoColor); // 输出: "var(--primary-color)"
 ```
 
+#### 通过 `GetEnumValueType` 获取获取枚举类型的value的联合类型：
+
+```typescript
+import {GetEnumValueType} from "@sailei1996/enumx";
+type InfoLevelValue = GetEnumValueType<typeof InfoLevelEnum>; // 'info' | 'warning' | 'error'
+```
+
 ### 所有用法示例
 ```typescript
 InfoLevelEnum.INFO // info
@@ -86,4 +93,6 @@ InfoLevelEnum.fromAlias('INFO') // { label: "通知", alias: "INFO", value: "inf
 InfoLevelEnum.fromText('通知') // { label: "通知", alias: "INFO", value: "info", color: "var(--primary-color)" }
 
 InfoLevelEnum.toArray()
+
+GetEnumValueType<typeof InfoLevelEnum>
 ```
