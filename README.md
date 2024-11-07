@@ -94,5 +94,5 @@ InfoLevelEnum.fromText('通知') // { label: "通知", alias: "INFO", value: "in
 
 InfoLevelEnum.toArray()
 
-GetEnumValueType<typeof InfoLevelEnum>
+GetEnumValueType<typeof InfoLevelEnum> // 'info' | 'warning' | 'error'
 ```
