@@ -27,7 +27,7 @@ yarn add @sailei1996/enumx
 通过 `EnumX.createEnum` 方法创建 `EnumX` 实例：
 
 ```typescript
-import EnumX from "enumx";
+import EnumX from "@sailei1996/enumx";
 
 const InfoLevelEnum = EnumX.createEnum([
   { label: "通知", alias: "INFO", value: "info", color: "var(--primary-color)" },
