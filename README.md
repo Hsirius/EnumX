@@ -68,7 +68,7 @@ const infoColor = InfoLevelEnum.fromValue("info")?.color;
 console.log(infoColor); // 输出: "var(--primary-color)"
 ```
 
-#### 通过 `GetEnumValueType` 获取获取枚举类型的value的联合类型：
+#### 通过 `GetEnumValueType` 获取枚举类型的value的联合类型：
 
 ```typescript
 import {GetEnumValueType} from "@sailei1996/enumx";
